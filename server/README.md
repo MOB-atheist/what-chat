@@ -1,8 +1,10 @@
 # Docker container creation
 
+All commands must be executed inside server folder
+
 ## Build image
 
-To build image use the command `docker build -f ../Server ../ -t front-end-what-chat` where, "." is the current folder, "../Server" is the Dockerfile, "../" is the folder behind, this is important because docker can only work on high placement folder, docker cant get filder outside current folder, "-t" gives alias for the image.
+To build image use the command `docker build -f ../Dockerfile ../ -t front-end-what-chat` where, "." is the current folder, "../server" is the Dockerfile, "../" is the folder behind, this is important because docker can only work on high placement folder, docker cant get filder outside current folder, "-t" gives alias for the image.
 
 ## Run container
 
