@@ -38,7 +38,7 @@ class Signup extends Component {
     }
 
     render() {
-        const { classes, Copyright } = this.props
+        const { theme, classes, Copyright } = this.props
         return (
             <Container component="main" maxWidth="xs">
                 <div className={classes.paper}>

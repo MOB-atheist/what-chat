@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom'
 
 import {
     Container,
-    CssBaseline,
     Typography,
     Link,
 } from '@material-ui/core'
@@ -32,22 +31,22 @@ export default class Routes extends Component {
     }
 
     render() {
+        const { theme } = this.props
         return (
             <>
-                <CssBaseline/>
                 <Container max-width="lg">
                     <Switch>
                         <Route exact path="/signup">
-                            <Signup Copyright={ Copyright } />
+                            <Signup Copyright={ Copyright } theme={theme} />
                         </Route>
                         <Route exact path="/login">
-                            <Login Copyright={ Copyright } />
+                            <Login Copyright={ Copyright } theme={theme} />
                         </Route>
-                        <Route exact to="/Checkout">
-                            <Checkout Copyright={ Copyright } />
+                        <Route exact path="/Checkout">
+                            <Checkout Copyright={ Copyright } theme={theme} />
                         </Route>
-                        <Route to="/">
-                            <Home Copyright={ Copyright } />
+                        <Route path="/">
+                            <Home Copyright={ Copyright } theme={theme} />
                         </Route>
                     </Switch>
                 </Container>

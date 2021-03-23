@@ -85,21 +85,10 @@ class Home extends Component {
 
     render() {
         const { getStepContent, handleBack, handleNext } = this
-        const { classes, Copyright } = this.props
+        const { theme, classes, Copyright } = this.props
         const { activeStep } = this.state
         return (
             <>
-                <AppBar
-                    position="absolute"
-                    color="default"
-                    className={classes.appBar}
-                >
-                    <Toolbar>
-                        <Typography variant="h6" color="inherit" noWrap>
-                            Coder Ahead
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
                 <main className={classes.layout}>
                     <Paper className={classes.paper}>
                         <Typography component="h1" variant="h4" align="center">
