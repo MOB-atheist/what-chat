@@ -21,31 +21,20 @@ const useStyles = (theme) => ({
 
 const footers = [
     {
-        title: 'Company',
-        description: ['Team', 'History', 'Contact us', 'Locations'],
+        title: 'CoderAhead',
+        description: ['Time', 'Historia', 'Contato'],
     },
     {
-        title: 'Features',
+        title: 'Recursos',
         description: [
-            'Cool stuff',
-            'Random feature',
-            'Team feature',
-            'Developer stuff',
-            'Another one',
-        ],
-    },
-    {
-        title: 'Resources',
-        description: [
-            'Resource',
-            'Resource name',
-            'Another resource',
-            'Final resource',
+            'Whatsapp Business',
+            'Newsletter',
+            'Painel',
         ],
     },
     {
         title: 'Legal',
-        description: ['Privacy policy', 'Terms of use'],
+        description: ['Termo de Privacidade', 'Termos de Uso'],
     },
 ]
 

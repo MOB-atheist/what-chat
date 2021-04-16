@@ -12,7 +12,7 @@ class Home extends Component {
     }
 
     render() {
-        const { classes, Copyright } = this.props
+        const { /* classes, */ Copyright } = this.props
         return (
             <>
                 <Pricing Copyright={ Copyright } />

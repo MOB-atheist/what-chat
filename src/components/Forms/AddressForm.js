@@ -44,7 +44,7 @@ class AddressForm extends Component {
     }
 
     render() {
-        const { classes, Copyright } = this.props
+        const { classes } = this.props
         return (
             <>
                 <Typography variant="h6" gutterBottom>

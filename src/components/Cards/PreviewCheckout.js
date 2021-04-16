@@ -16,7 +16,6 @@ class PreviewCheckout extends Component {
     }
 
     render() {
-        const { classes, Copyright } = this.props
         return (
             <>
                 <Typography variant="h6" gutterBottom>

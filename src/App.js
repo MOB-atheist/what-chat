@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import {
     BrowserRouter as Router
 } from 'react-router-dom'
@@ -8,20 +9,23 @@ import {
     CssBaseline
 } from "@material-ui/core";
 
-import Routes from './pages/routes';
-import Footer from './components/Footer';
-import Header from  './components/Header'
-import { render } from '@testing-library/react';
+import Routes from './pages/routes'
+// import { render } from '@testing-library/react';
+
+// import { useSelector, useDispatch } from 'react-redux';
+import { Change } from './Reducer';
+
 
 class App extends Component {
     constructor(props) {
         super()
         this.state = {
-            darkTheme: false
+            darkTheme: props.darkTheme
         }
     }
 
     toggleDark = (v) => {
+        this.props.dispatch(Change(v))
         this.setState({darkTheme: v})
     }
 
@@ -33,7 +37,7 @@ class App extends Component {
                 primary: {
                     light: "#4FB0C6",
                     main: "#379392",
-                    dark: "#17301C",
+                    dark: "#1e4c4c",
                 },
                 secondary: {
                     light: "#00FF97",
@@ -43,18 +47,13 @@ class App extends Component {
                 type: darkTheme ? 'dark' : 'light',
             },
         })
-        
+        // #1b403f
         return (
             <>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
                     <Router>
-                        <Header 
-                            darkTheme={darkTheme}
-                            propagateToggleDark={toggleDark}
-                        />
-                        <Routes />
-                        <Footer />
+                        <Routes toggleDark={toggleDark} darkTheme={darkTheme}/>
                     </Router>
                 </ThemeProvider>
             </>

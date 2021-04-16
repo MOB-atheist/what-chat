@@ -11,17 +11,21 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    useTheme
+    Grid,
+    // useTheme
 } from '@material-ui/core'
 import {
     Inbox as InboxIcon,
     Mail as MailIcon,
     ChevronLeft,
-    ChevronRight,
+    // ChevronRight,
     Menu as MenuIcon,
+    WhatsApp as WhatsAppIcon,
 } from '@material-ui/icons'
 import { withStyles } from '@material-ui/core/styles'
 import Switch from '../../components/Forms/Switch'
+import PrimaryMenu from './PrimaryMenu'
+import SecondaryMenu from './SecondaryMenu'
 
 const useStyles = (theme) => ({
     root: {
@@ -88,7 +92,7 @@ const useStyles = (theme) => ({
 
 class Header extends Component {
     constructor(props) {
-        super()
+        super(props)
         this.state = {
             open: false,
         }
@@ -103,7 +107,7 @@ class Header extends Component {
     }
 
     render() {
-        const { theme, classes, propagateToggleDark } = this.props
+        const { /* theme, */ classes, propagateToggleDark, History, darkTheme } = this.props
         const { handleDrawerOpen, handleDrawerClose } = this
         const { open } = this.state
         return (
@@ -127,10 +131,23 @@ class Header extends Component {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography className={classes.title} variant="h6" noWrap>
-                            Persistent drawer
+                        <Typography
+                            className={classes.title}
+                            variant="h6"
+                            noWrap
+                        >
+                            <Grid container spacing={0} alignItems="center">
+                                <Grid item>
+                                    <WhatsAppIcon fontSize="large" />
+                                </Grid>
+                                <Grid item>What Chat</Grid>
+                            </Grid>
                         </Typography>
-                        <Switch className={classes.Switch} ToggleDark={propagateToggleDark} />
+                        <Switch
+                            className={classes.Switch}
+                            ToggleDark={propagateToggleDark}
+                            Value={darkTheme}
+                        />
                     </Toolbar>
                 </AppBar>
                 <Drawer
@@ -148,36 +165,10 @@ class Header extends Component {
                         </IconButton>
                     </div>
                     <Divider />
-                    <List>
-                        {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                            (text, index) => (
-                                <ListItem button key={text}>
-                                    <ListItemIcon>
-                                        {index % 2 === 0 ? (
-                                            <InboxIcon />
-                                        ) : (
-                                            <MailIcon />
-                                        )}
-                                    </ListItemIcon>
-                                    <ListItemText primary={text} />
-                                </ListItem>
-                            )
-                        )}
-                    </List>
+                        <PrimaryMenu History={History} />
                     <Divider />
                     <List>
-                        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon />
-                                    ) : (
-                                        <MailIcon />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
+                        <SecondaryMenu />
                     </List>
                 </Drawer>
             </div>

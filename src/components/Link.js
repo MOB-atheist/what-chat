@@ -8,6 +8,6 @@ const LinkBehavior = React.forwardRef((props, ref) => {
 
 export default function LinkStyled(props, {alias}){
     return (
-        <Link component={LinkBehavior} {...props}>{alias}</Link>
+        <Link component={LinkBehavior} {...props}><>{alias}</></Link>
     )
 }

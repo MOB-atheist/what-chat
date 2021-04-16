@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import {
+    Switch,
+    Route,
+    //BrowserRouter as Router,
+    withRouter,
+} from 'react-router-dom'
 
 import {
     Container,
     Typography,
     Link,
 } from '@material-ui/core'
+
+import Footer from '../../components/Footer'
+import Header from  '../../components/Header'
 
 import Home from '../home'
 import Login from '../Login'
@@ -25,13 +33,13 @@ function Copyright() {
     )
 }
 
-export default class Routes extends Component {
+class Routes extends Component {
     constructor(props){
         super()
     }
 
     render() {
-        const { theme } = this.props
+        const { theme, darkTheme, toggleDark, history } = this.props
         return (
             <>
                 <Container max-width="lg">
@@ -40,13 +48,22 @@ export default class Routes extends Component {
                             <Signup Copyright={ Copyright } theme={theme} />
                         </Route>
                         <Route exact path="/login">
-                            <Login Copyright={ Copyright } theme={theme} />
+                            <Login Copyright={ Copyright } theme={theme} History={ history }/>
                         </Route>
                         <Route exact path="/Checkout">
-                            <Checkout Copyright={ Copyright } theme={theme} />
+                            <Header History={history} propagateToggleDark={toggleDark}/>
+                                <Checkout Copyright={ Copyright } theme={theme} />
+                            <Footer />
+                        </Route>
+                        <Route exact path="/Chat">
+                            <Header History={history} propagateToggleDark={toggleDark} darkTheme={darkTheme}/>
+                                <Checkout Copyright={ Copyright } theme={theme} />
+                            <Footer />
                         </Route>
                         <Route path="/">
-                            <Home Copyright={ Copyright } theme={theme} />
+                            <Header History={history} propagateToggleDark={toggleDark} darkTheme={darkTheme}/>
+                                <Home Copyright={ Copyright } theme={theme} />
+                            <Footer />
                         </Route>
                     </Switch>
                 </Container>
@@ -54,3 +71,5 @@ export default class Routes extends Component {
         )
     }
 }
+
+export default withRouter(Routes)
