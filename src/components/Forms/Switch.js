@@ -47,7 +47,7 @@ class CustomSwitch extends Component {
     constructor(props) {
         super()
         this.state = {
-            checked: false,
+            checked: (typeof(props.Value) !== "undefined"?props.Value:false),
         }
     }
 

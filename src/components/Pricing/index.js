@@ -8,11 +8,11 @@ import {
     CardContent,
     CardActions,
     Button,
-    Box,
+    // Box,
 } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import StarIcon from '@material-ui/icons/Star'
-import Link from '../../components/Link'
+// import Link from '../../components/Link'
 
 const useStyles = (theme) => ({
     '@global': {
@@ -69,7 +69,7 @@ const tiers = [
         price: '30',
         description: [
             '10 usuários inclusos',
-            'Respostas automáricas',
+            'Respostas automáticas',
             'Help Center',
             'Suporte por email',
         ],
@@ -81,7 +81,7 @@ const tiers = [
         price: '70',
         description: [
             '50 usuários inclusos',
-            'Chat Bot auomatizado',
+            'Chat Bot automatizado',
             'Help center prioritário',
             'Suporte por email prioritário',
         ],

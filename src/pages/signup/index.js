@@ -30,6 +30,10 @@ const Styles = (theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    input: {
+        '-webkit-text-fill-color': (theme.palette.type !== 'dark'? theme.palette.text.primary: theme.palette.text.secondary)+" !important",
+        WebkitBoxShadow: "0 0 0 100px "+(theme.palette.type === 'dark' ? '#1f5656': 'rgb(232, 240, 254)')+" inset !important",
+    },
 })
 
 class Signup extends Component {
@@ -38,7 +42,7 @@ class Signup extends Component {
     }
 
     render() {
-        const { theme, classes, Copyright } = this.props
+        const { /* theme, */ classes, Copyright } = this.props
         return (
             <Container component="main" maxWidth="xs">
                 <div className={classes.paper}>
@@ -82,6 +86,7 @@ class Signup extends Component {
                                     label="Email"
                                     name="email"
                                     autoComplete="email"
+                                    inputProps={{ className: classes.input }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -94,6 +99,7 @@ class Signup extends Component {
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    inputProps={{ className: classes.input }}
                                 />
                             </Grid>
                         </Grid>
