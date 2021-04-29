@@ -33,6 +33,15 @@ class App extends Component {
         const { darkTheme } = this.state
         const { toggleDark } = this
         const theme = createMuiTheme({
+            overrides: {
+                MuiCssBaseline: {
+                    '@global': {
+                        input: {
+                            WebkitBoxShadow: "0 0 0 100px "+(darkTheme ? '#303030': '#fafafa')+" inset !important",
+                        },
+                    }
+                }
+            },
             palette: {
                 primary: {
                     light: "#4FB0C6",

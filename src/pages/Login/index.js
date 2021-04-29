@@ -32,10 +32,10 @@ const Styles = (theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-    input: {
-        '-webkit-text-fill-color': (theme.palette.type !== 'dark'? theme.palette.text.primary: theme.palette.text.secondary)+" !important",
-        WebkitBoxShadow: "0 0 0 100px "+(theme.palette.type === 'dark' ? '#1f5656': 'rgb(232, 240, 254)')+" inset !important",
-    },
+    // input: {
+    //     '-webkit-text-fill-color': (theme.palette.type !== 'dark'? theme.palette.text.primary: theme.palette.text.secondary)+" !important",
+    //     WebkitBoxShadow: "0 0 0 100px "+(theme.palette.type === 'dark' ? '#1f5656': 'rgb(232, 240, 254)')+" inset !important",
+    // },
 })
 
 class SignIn extends Component {
@@ -94,7 +94,7 @@ class SignIn extends Component {
                         </Button>
                         <Grid container justify="center">
                             <Grid item xs={12}>
-                                <Button primary variant="body1" fullWidth onClick={() => { History.goBack() }}>Voltar</Button>
+                                <Button fullWidth onClick={() => { History.goBack() }}>Voltar</Button>
                             </Grid>
                             <Grid item xs>
                                 <Link
