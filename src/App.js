@@ -61,9 +61,7 @@ class App extends Component {
             <>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
-                    <Router>
-                        <Routes toggleDark={toggleDark} darkTheme={darkTheme}/>
-                    </Router>
+                    <Routes toggleDark={toggleDark} darkTheme={darkTheme}/>
                 </ThemeProvider>
             </>
         )
