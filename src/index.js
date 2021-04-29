@@ -5,6 +5,7 @@ import { Provider, connect } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import Storage from './Store'
 import * as serviceWorker from './serviceWorker'
+import { HashRouter } from 'react-router-dom'
 
 const { store, persistor } = Storage()
 
@@ -17,7 +18,9 @@ const ConnectedApp = connect(mapStateToProps)(App);
 ReactDOM.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-            <ConnectedApp/>
+            <HashRouter>
+                <ConnectedApp/>
+            </HashRouter>
         </PersistGate>
     </Provider>,
     document.getElementById('root')
