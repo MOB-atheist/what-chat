@@ -13,6 +13,6 @@ const sequelize = config.url
   ? new Sequelize(config.url, config)
   : new Sequelize(config.database, config.username, config.password, config)
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
 
 export { Sequelize, sequelize }

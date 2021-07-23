@@ -11,11 +11,66 @@ router.use(function timeLog(req, res, next): void {
 
 router.get('/messages', (req, res) => {
   Messages.findAll({
-    include: [User]
+    include: [User],
+    where: {
+      ...req.query
+    }
   })
-    .then((messages: any) => {
+    .then((data: any) => {
       res.status(200)
-      res.json(messages)
+      res.json(data)
+    })
+    .catch((err: Error) => {
+      res.status(500)
+      res.json(err)
+    })
+})
+
+router.post('/messages', (req, res) => {
+  Messages.findOrCreate({
+    defaults: {
+      ...req.body
+    },
+    where: {
+      ...req.body
+    }
+  })
+    .then(([data]) => {
+      res.status(200)
+      res.json(data)
+    })
+    .catch((err: Error) => {
+      res.status(500)
+      res.json(err)
+    })
+})
+
+router.patch('/messages/:id', (req, res) => {
+  Messages.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+    .then((status: any) => {
+      res.status(200)
+      res.send(Boolean(...status))
+    })
+    .catch((err: Error) => {
+      res.status(500)
+      res.json(err)
+    })
+})
+
+router.delete('/messages/:id', (req, res) => {
+  Messages.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then((status: any) => {
+      res.status(200)
+      console.log(status)
+      res.send(Boolean(status))
     })
     .catch((err: Error) => {
       res.status(500)

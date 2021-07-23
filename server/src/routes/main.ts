@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router()
 
-router.use(function timeLog(req, res, next): void {
+router.use(function timeLog (req, res, next): void {
   console.log('Time: ', new Date().toUTCString())
   next()
 })

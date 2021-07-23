@@ -25,10 +25,9 @@ interface AuthorInstance
 
 const User = sequelize.define<AuthorInstance>('User', {
   id: {
-    allowNull: false,
-    autoIncrement: false,
     primaryKey: true,
     type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
     unique: true
   },
   firstName: {

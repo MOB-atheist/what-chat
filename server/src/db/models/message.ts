@@ -22,10 +22,9 @@ interface AuthorInstance
 
 const Message = sequelize.define<AuthorInstance>('Message', {
   id: {
-    allowNull: false,
-    autoIncrement: false,
     primaryKey: true,
     type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
     unique: true
   },
   message: {
