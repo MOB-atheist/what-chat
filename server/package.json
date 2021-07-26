@@ -18,7 +18,8 @@
         "pretty": "prettier --config .prettierrc 'src/**/*.ts' --write .",
         "stop": "pm2 stop what-chat",
         "restart": "pm2 restart what-chat",
-        "start": "pm2 start ecosystem.config.js what-chat"
+        "start": "pm2 start ecosystem.config.js what-chat",
+        "log": "pm2 log"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.5",
