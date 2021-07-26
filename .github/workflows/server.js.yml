@@ -1,16 +1,34 @@
-name: Server test
+name: Server Deploy
 on: [push]
 jobs:
   build:
-    name: Jest
+    name: Building, testing and deploying
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
-      - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.3.0
+        uses: actions/checkout@v2
+
+      - name: Installing dependencies 📦
+        uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
-      - uses: borales/actions-yarn@2.3.0
+
+      - name: Build 🛠
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+
+      - name: Tests 🗜
+        uses: borales/actions-yarn@v2.3.0
         with:
           cmd: test
+      
+      - name: Server SCP Upload 👾
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: ./dist/*
+          host: ${{ secrets.SSH_HOST }}
+          remote: ${{ secrets.SSH_DIR }}
+          port: ${{ secrets.SSH_PORT }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
