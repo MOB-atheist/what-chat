@@ -2,7 +2,7 @@ name: Server Deploy
 on: [push]
 defaults:
   run:
-    working-directory: ./server
+    working-directory: server
 jobs:
   build:
     name: Building, testing and deploying
