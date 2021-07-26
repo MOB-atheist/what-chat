@@ -1,0 +1,19 @@
+# Commands to start on workspace startup
+checkoutLocation: './server'
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    addCheck: false
+    addComment: false
+    addBadge: true
+tasks:
+  - init: yarn install
+    command: yarn build
+  - init: yarn start
+# Ports to expose on workspace startup
+ports:
+  - port: 8080
+    onOpen: open-preview

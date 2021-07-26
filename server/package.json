@@ -15,7 +15,6 @@
         "build": "babel --extensions '.ts' src --out-dir dist",
         "test": "jest --passWithNoTests",
         "pretty": "prettier --config .prettierrc 'src/**/*.ts' --write .",
-        "pm2-init": "pm2 init",
         "start": "node dist/app.js"
     },
     "devDependencies": {
