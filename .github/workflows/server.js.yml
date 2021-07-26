@@ -43,7 +43,7 @@ jobs:
         run: npm test:ci
 
       - name: Generating coverage badges
-        uses: actions/jest-badges-action@latest
+        uses: jpb06/jest-badges-action@latest
         with:
           branches: master
 
