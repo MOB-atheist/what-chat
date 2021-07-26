@@ -16,25 +16,21 @@ jobs:
       - name: Installing dependencies 📦
         uses: borales/actions-yarn@v2.3.0
         with:
-          working-directory: ./server
           cmd: install
 
       - name: Build 🛠
         uses: borales/actions-yarn@v2.3.0
         with:
-          working-directory: ./server
           cmd: build
 
       - name: Tests 🗜
         uses: borales/actions-yarn@v2.3.0
         with:
-          working-directory: ./server
           cmd: test
       
       - name: Server SCP Upload 👾
         uses: nogsantos/scp-deploy@master
         with:
-          working-directory: ./server
           src: ./dist/*
           host: ${{ secrets.SSH_HOST }}
           remote: ${{ secrets.SSH_DIR }}
