@@ -88,6 +88,7 @@ jobs:
         with:
           remote_docker_host: ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
           ssh_private_key:  ${{ secrets.SSH_KEY }}
+          ssh_public_key:  ${{ secrets.SSH_PUB_KEY }}
           deployment_mode: docker-swarm
           copy_stack_file: true
           deploy_path: ${{ secrets.SSH_DIR }}
