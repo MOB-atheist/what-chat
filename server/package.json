@@ -16,11 +16,9 @@
         "build": "babel --extensions '.ts' src --out-dir dist",
         "test": "jest --passWithNoTests",
         "pretty": "prettier --config .prettierrc 'src/**/*.ts' --write .",
-        "pm2-init": "pm2 init simple",
         "stop": "pm2 stop what-chat",
-        "restart": "pm2 stop what-chat",
-        "start": "PORT=8080 pm2 start dist/index.js --name what-chat",
-        "dev-start": "PORT=8080 pm2 start dist/index.js --name what-chat --attach"
+        "restart": "pm2 restart what-chat",
+        "start": "pm2 start ecosystem.config.js what-chat"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.5",
