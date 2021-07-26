@@ -1,36 +1,33 @@
 name: Server Deploy
 on: [push]
+defaults:
+  run:
+    working-directory: ./server
 jobs:
   build:
     name: Building, testing and deploying
     runs-on: ubuntu-latest
-    env:
-        working-directory: ./server
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
 
       - name: Installing dependencies 📦
         uses: borales/actions-yarn@v2.3.0
-        working-directory: ${{env.working-directory}}
         with:
           cmd: install
 
       - name: Build 🛠
         uses: borales/actions-yarn@v2.3.0
-        working-directory: ${{env.working-directory}}
         with:
           cmd: build
 
       - name: Tests 🗜
         uses: borales/actions-yarn@v2.3.0
-        working-directory: ${{env.working-directory}}
         with:
           cmd: test
       
       - name: Server SCP Upload 👾
         uses: nogsantos/scp-deploy@master
-        working-directory: ${{env.working-directory}}
         with:
           src: ./dist/*
           host: ${{ secrets.SSH_HOST }}
