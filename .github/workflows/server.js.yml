@@ -70,6 +70,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ${{ secrets.SSH_DIR }}
+            ls
             npm install
             npm stop
             npm start
