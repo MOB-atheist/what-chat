@@ -64,33 +64,20 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-  # deploy:
-  #   name: Server deployment
-  #   runs-on: ubuntu-latest
-    
-  #   steps:
-  #     - name: Server deploy scripts 🌐
-  #       uses: appleboy/ssh-action@master
-  #       with:
-  #         sync: false
-  #         host: ${{ secrets.SSH_HOST }}
-  #         username: ${{ secrets.SSH_USER }}
-  #         key: ${{ secrets.SSH_KEY }}
-  #         script: |
-  #           cd ${{ secrets.SSH_DIR }}
-  #           npm install --production
-  #           npm stop
-  #           npm start
-  testcase: 
-    name: its a test case mah friendo OwO
+  deploy:
+    name: Server deployment
     runs-on: ubuntu-latest
     
     steps:
-      - name: Deploy the shit out of it
-        uses: alex-ac/github-action-ssh-docker-compose@master
+      - name: Server deploy scripts 🌐
+        uses: appleboy/ssh-action@master
         with:
-          ssh_host: ${{ secrets.SSH_HOST }}
-          ssh_private_key:  ${{ secrets.SSH_KEY }}
-          ssh_user:  ${{ secrets.SSH_USER }}
-          docker_compose_prefix: what-chat
-          docker_compose_file: ${{ secrets.SSH_DIR }}
+          sync: false
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ secrets.SSH_DIR }}
+            npm install --production
+            npm stop
+            npm start
