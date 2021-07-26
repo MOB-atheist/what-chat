@@ -1,4 +1,5 @@
 name: Server Deploy
+
 on: 
   push:
     branches: [ master ]
@@ -6,27 +7,31 @@ jobs:
   build:
     name: Building, testing and deploying
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+
     defaults:
       run:
-        working-directory: ./server
+        working-directory: server
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
 
-      - name: Installing dependencies 📦
-        uses: borales/actions-yarn@v2.3.0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          cmd: install
+          node-version: ${{ matrix.node-version }}
+
+      - name: Installing dependencies 📦
+        run: npm ci
 
       - name: Build 🛠
-        uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: build
+        run: npm run build --if-present
 
-      - name: Tests 🗜
-        uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: test
+      - name: Unit Tests 🗜
+        run: npm test
       
       - name: Server SCP Upload 👾
         uses: nogsantos/scp-deploy@master
