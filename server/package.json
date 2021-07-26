@@ -13,12 +13,10 @@
     "scripts": {
         "dev": "nodemon --watch './src' --exec 'ts-node ./src/index.ts' -e ts",
         "build": "babel --extensions '.ts' src --out-dir dist",
+        "build-docker": "babel --extensions '.ts' src --out-dir dist",
         "test": "jest --passWithNoTests",
         "pretty": "prettier --config .prettierrc 'src/**/*.ts' --write .",
-        "stop": "pm2 stop what-chat",
-        "restart": "pm2 restart what-chat",
-        "start": "pm2 start ecosystem.config.js what-chat",
-        "log": "pm2 log"
+        "start": "node dist/index.js"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.5",
