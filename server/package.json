@@ -48,5 +48,60 @@
         "ts-jest": "^27.0.3",
         "ts-node": "^10.1.0",
         "typescript": "^4.3.5"
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.{ts,tsx}",
+            "!src/**/*.d.ts"
+        ],
+        "coverageDirectory": "coverage",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx"
+        ],
+        "moduleNameMapper": {
+            "^@/(.*)$": "<rootDir>/src/$1"
+        },
+        "modulePathIgnorePatterns": [
+            "node_modules",
+            "<rootDir>/node_modules"
+        ],
+        "testEnvironment": "node",
+        "testMatch": [
+            "**/__tests__/**/*.{ts,tsx}",
+            "**/?(*.)+(spec|test).{ts,tsx}"
+        ],
+        "testPathIgnorePatterns": [
+            "node_modules",
+            "<rootDir>/node_modules"
+        ],
+        "coverageReporters": {
+            "text": {
+                "dir": "coverage",
+                "reporters": [
+                    {
+                        "type": "text-summary"
+                    }
+                ]
+            },
+            "html": {
+                "dir": "coverage",
+                "reporters": [
+                    {
+                        "type": "html",
+                        "subdir": "html"
+                    }
+                ]
+            },
+            "lcov": {
+                "dir": "coverage",
+                "reporters": [
+                    {
+                        "type": "lcov",
+                        "subdir": "lcov"
+                    }
+                ]
+            }
+        }
     }
 }
