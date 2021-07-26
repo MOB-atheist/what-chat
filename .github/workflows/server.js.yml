@@ -4,6 +4,18 @@ on:
   push:
     branches: [ master ]
 jobs:
+  folders:
+    name: Server folder creation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Creating server folders 🗂
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            mkdir -p ${{ secrets.SSH_DIR }}/dist 
   build:
     name: Building, testing and deploying
     runs-on: ubuntu-latest
@@ -32,15 +44,6 @@ jobs:
 
       - name: Unit Tests 🗜
         run: npm test
-      
-      - name: Creating server folders 🗂
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            mkdir -p ${{ secrets.SSH_DIR }}/dist
 
       - name: Server build Upload 👾
         uses: nogsantos/scp-deploy@master
@@ -61,7 +64,11 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-      
+  deploy:
+    - name: Server deployment
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: Server deploy scripts 🌐
         uses: appleboy/ssh-action@master
         with:
