@@ -52,10 +52,10 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
       
-      - name: package.json Upload 🧰
+      - name: package.json && ecosystem.config.js Upload 🧰
         uses: nogsantos/scp-deploy@master
         with:
-          src: ./server/package.json
+          src: ./server/package.json ./server/ecosystem.config.js
           host: ${{ secrets.SSH_HOST }}
           remote: ${{ secrets.SSH_DIR }}
           port: ${{ secrets.SSH_PORT }}
