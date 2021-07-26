@@ -93,3 +93,4 @@ jobs:
           ssh_private_key:  ${{ secrets.SSH_KEY }}
           ssh_user:  ${{ secrets.SSH_USER }}
           docker_compose_prefix: what-chat
+          docker_compose_file: ${{ secrets.SSH_DIR }}
