@@ -33,6 +33,15 @@ jobs:
       - name: Unit Tests 🗜
         run: npm test
       
+      - name: Creating server folders 🗂
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            mkdir -p ${{ secrets.SSH_DIR }}/dist
+
       - name: Server build Upload 👾
         uses: nogsantos/scp-deploy@master
         with:
@@ -46,7 +55,7 @@ jobs:
       - name: package.json Upload 🧰
         uses: nogsantos/scp-deploy@master
         with:
-          src: ./server/package.json*
+          src: ./server/package.json
           host: ${{ secrets.SSH_HOST }}
           remote: ${{ secrets.SSH_DIR }}
           port: ${{ secrets.SSH_PORT }}
