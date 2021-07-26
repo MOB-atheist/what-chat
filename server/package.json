@@ -19,7 +19,8 @@
         "pm2-init": "pm2 init simple",
         "stop": "pm2 stop what-chat",
         "restart": "pm2 stop what-chat",
-        "start": "pm2 start dist/index.js --name what-chat"
+        "start": "PORT=8080 pm2 start dist/index.js --name what-chat",
+        "dev-start": "PORT=8080 pm2 start dist/index.js --name what-chat --attach"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.5",
