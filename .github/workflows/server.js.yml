@@ -52,10 +52,13 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
       
-      - name: package.json Upload 🧰
+      - name: root files Upload 🧰
         uses: nogsantos/scp-deploy@master
         with:
-          src: ./server/package.json
+          src:
+            ./server/package.json
+            ./server/docker-compose.yaml
+            ./server/Dockerfile
           host: ${{ secrets.SSH_HOST }}
           remote: ${{ secrets.SSH_DIR }}
           port: ${{ secrets.SSH_PORT }}
