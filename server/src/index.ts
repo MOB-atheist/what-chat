@@ -23,5 +23,5 @@ const server = createServer(app)
 socket(server) // socket.io
 
 server.listen(port, () => {
-  console.log(`Server listening on port ${port} ${process.env.PORT}`)
+  console.log(`Server listening on port ${port}`)
 })
