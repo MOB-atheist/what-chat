@@ -1,9 +1,0 @@
-version: '1'
-services:
-  web:
-    build: .
-    command: npm run start
-    volumes: 
-        .:/usr/app
-    ports:
-        - "80:80"

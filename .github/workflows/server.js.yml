@@ -57,8 +57,7 @@ jobs:
         with:
           src:
             ./server/package.json
-            ./server/docker-compose.yaml
-            ./server/Dockerfile
+            ./server/ecosystem.config.js
           host: ${{ secrets.SSH_HOST }}
           remote: ${{ secrets.SSH_DIR }}
           port: ${{ secrets.SSH_PORT }}
