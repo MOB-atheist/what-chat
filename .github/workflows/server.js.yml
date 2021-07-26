@@ -61,23 +61,23 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-  deploy:
-    name: Server deployment
-    runs-on: ubuntu-latest
+  # deploy:
+  #   name: Server deployment
+  #   runs-on: ubuntu-latest
     
-    steps:
-      - name: Server deploy scripts 🌐
-        uses: appleboy/ssh-action@master
-        with:
-          sync: false
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd ${{ secrets.SSH_DIR }}
-            npm install --production
-            npm stop
-            npm start
+  #   steps:
+  #     - name: Server deploy scripts 🌐
+  #       uses: appleboy/ssh-action@master
+  #       with:
+  #         sync: false
+  #         host: ${{ secrets.SSH_HOST }}
+  #         username: ${{ secrets.SSH_USER }}
+  #         key: ${{ secrets.SSH_KEY }}
+  #         script: |
+  #           cd ${{ secrets.SSH_DIR }}
+  #           npm install --production
+  #           npm stop
+  #           npm start
   testcase: 
     name: its a test case mah friendo OwO
     runs-on: ubuntu-latest
