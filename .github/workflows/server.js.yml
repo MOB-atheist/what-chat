@@ -65,7 +65,7 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
   deploy:
-    - name: Server deployment
+    name: Server deployment
     runs-on: ubuntu-latest
     
     steps:
