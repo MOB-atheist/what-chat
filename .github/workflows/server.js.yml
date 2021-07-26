@@ -2,13 +2,13 @@ name: Server Deploy
 on: 
   push:
     branches: [ master ]
-defaults:
-  run:
-    working-directory: ./server
 jobs:
   build:
     name: Building, testing and deploying
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
