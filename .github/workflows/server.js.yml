@@ -4,7 +4,7 @@ jobs:
   build:
     name: Building, testing and deploying
     runs-on: ubuntu-latest
-    end:
+    env:
         working-directory: ./server
     steps:
       - name: Checkout 🛎️
