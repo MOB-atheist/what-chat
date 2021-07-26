@@ -27,4 +27,4 @@ jobs:
       uses: ziishaned/jest-reporter-action@0.1.1
       with:
         github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-        test-command: "npm test"
+        test-command: "npm run coverage"
