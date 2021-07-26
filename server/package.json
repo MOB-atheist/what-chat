@@ -20,8 +20,7 @@
         "start": "pm2 start ecosystem.config.js what-chat",
         "start-attached": "pm2 start ecosystem.config.js what-chat --attach",
         "log": "pm2 log",
-        "test": "jest --passWithNoTests",
-        "coverage": "jest --passWithNoTests --coverage"
+        "test:ci": "jest --ci --runInBand --passWithNoTests --coverage"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.5",
@@ -73,11 +72,7 @@
             "<rootDir>/node_modules"
         ],
         "coverageReporters": [
-            "text",
-            "html",
-            "lcov",
-            "cobertura",
-            "json"
+            "json-summary"
         ]
     }
 }
