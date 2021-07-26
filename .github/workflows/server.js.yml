@@ -11,6 +11,7 @@ jobs:
       - name: Creating server folders 🗂
         uses: appleboy/ssh-action@master
         with:
+          sync: true
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
@@ -72,6 +73,7 @@ jobs:
       - name: Server deploy scripts 🌐
         uses: appleboy/ssh-action@master
         with:
+          sync: true
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
