@@ -19,7 +19,7 @@
         "pm2-init": "pm2 init simple",
         "stop": "pm2 stop what-chat",
         "restart": "pm2 stop what-chat",
-        "start": "pm2 start dist/app.js --name what-chat"
+        "start": "pm2 start dist/index.js --name what-chat"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.5",
