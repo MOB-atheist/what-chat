@@ -28,10 +28,10 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
 
-      - name: Use Node 15.x 🥷🏻
+      - name: Use Node 14.x 🥷🏻
         uses: actions/setup-node@v2
         with:
-          node-version: 15.x
+          node-version: 14.x
 
       - name: Installing dependencies 📦
         run: npm install
@@ -39,13 +39,32 @@ jobs:
       - name: Build 🛠
         run: npm run build --if-present
 
-      - name: Unit Tests 🗜
+      - name: Unity Test 🗜
         run: npm run test:ci
 
-      - name: Generating coverage badges
-        uses: jpb06/jest-badges-action@master
+      - name: Coverage Testing 🗜
+        run: |
+          SUMMARY="$(npm run test:ci -- --coverageReporters='text-summary' | tail -2 | head -1)"
+          TOKENS=($SUMMARY)
+          echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
+          REF=${{ github.ref }}
+          echo "github.ref: $REF"
+          IFS='/' read -ra PATHS <<< "$REF"
+          BRANCH_NAME="${PATHS[1]}_${PATHS[2]}"
+          echo $BRANCH_NAME
+          echo "BRANCH=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
+
+
+      - name: Create Badge
+        uses: schneegans/dynamic-badges-action@v1.0.0
         with:
-          branches: master
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 372a6422381c896e3eeafd79058737d7
+          filename: what-chat__${{ env.BRANCH }}.json
+          label: Test Coverage
+          message: ${{ env.COVERAGE }}
+          color: green
+          namedLogo: jest
 
       - name: Server build Upload 👾
         uses: nogsantos/scp-deploy@master
