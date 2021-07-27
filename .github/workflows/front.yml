@@ -34,17 +34,7 @@ jobs:
         with:
           branch: gh-pages
           folder: build
-
-  badge:
-    name: Badge
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: front
-    
-    steps:
-
+      
       - name: Coverage Testing 🗜
         run: |
           SUMMARY="$(npm run test -- --ci --runInBand --passWithNoTests --coverage --coverageReporters=text-summary | tail -2 | head -1)"
