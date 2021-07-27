@@ -95,7 +95,7 @@ jobs:
       - name: Server deploy scripts 🌐
         uses: appleboy/ssh-action@master
         with:
-          sync: false
+          sync: true
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
