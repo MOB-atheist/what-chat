@@ -54,7 +54,7 @@ jobs:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: 372a6422381c896e3eeafd79058737d7
           filename: what-chat__${{ env.BRANCH }}_front.json
-          label: Test Coverage Front
+          label: Front Coverage
           message: ${{ env.COVERAGE }}
           color: green
           namedLogo: jest
