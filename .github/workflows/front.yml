@@ -1,0 +1,70 @@
+name: Git Hub Pages Deploy
+
+on: 
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: front
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Use Node 15.x 🥷🏻
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15.x
+
+      - name: Installing dependencies 📦
+        run: npm install
+
+      - name: Build 🛠
+        run: npm run build --if-present
+
+      - name: Unity Test 🗜
+        run: npm run test --ci --runInBand --passWithNoTests
+      
+      - name: Deploy 🚀
+          uses: JamesIves/github-pages-deploy-action@4.1.1
+          with:
+            branch: gh-pages
+            folder: build
+
+  badge:
+    name: Badge
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: front
+    
+    steps:
+
+      - name: Coverage Testing 🗜
+        run: |
+          SUMMARY="$(npm run test -- --ci --runInBand --passWithNoTests --coverage --coverageReporters=text-summary | tail -2 | head -1)"
+          TOKENS=($SUMMARY)
+          echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
+          REF=${{ github.ref }}
+          echo "github.ref: $REF"
+          IFS='/' read -ra PATHS <<< "$REF"
+          BRANCH_NAME="${PATHS[1]}_${PATHS[2]}"
+          echo $BRANCH_NAME
+          echo "BRANCH=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
+
+
+      - name: Create Coverage Badge
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 372a6422381c896e3eeafd79058737d7
+          filename: what-chat__${{ env.BRANCH }}_front.json
+          label: Test Coverage
+          message: ${{ env.COVERAGE }}
+          color: green
+          namedLogo: jest
