@@ -1,8 +1,6 @@
 name: Check Outdated
 
-on:
-  schedule:
-    - cron: "0 12 * * 1"
+on: [push]
 
 jobs:
   check_updates:
