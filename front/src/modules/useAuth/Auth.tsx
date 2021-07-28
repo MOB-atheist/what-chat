@@ -2,13 +2,15 @@ import React from 'react'
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
-import TextField from '@material-ui/core/TextField'
 import { TransitionProps } from '@material-ui/core/transitions'
 
 import { AuthContext } from './authContext'
-import { Button, FormControl, Grid, Paper, Zoom } from '@material-ui/core'
+import { Paper, Zoom, Slide, Button } from '@material-ui/core'
 
 import Blob from './blob.svg'
+import Blob2 from './blob2.svg'
+import Blob3 from './blob3.svg'
+import FormLogin from './FormLogin'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,10 +48,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     backgrondSvg: {
       position: 'absolute',
-      top: 50,
+      top: 0,
       left: 0,
       width: '100%',
       height: '100%'
+    },
+    registerButton: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      right: theme.spacing(2)
     }
   })
 )
@@ -63,6 +70,8 @@ const Transition = React.forwardRef(function Transition(
 
 const _ = () => {
   const { authState, dispatch } = React.useContext(AuthContext)
+  const [onLogin, setOnLogin] = React.useState(true)
+  const [onRegister, setOnRegister] = React.useState(false)
 
   const classes = useStyles()
 
@@ -76,95 +85,33 @@ const _ = () => {
     <Dialog
       fullScreen
       className={classes.dialog}
-      open={authState.authOpen}
+      open={true}
       onClose={close}
       TransitionComponent={Transition}
     >
       <div className={classes.background}>
+        <img className={classes.backgrondSvg} src={Blob3} alt="blob3" />
         <img className={classes.backgrondSvg} src={Blob} alt="blob" />
+        <img className={classes.backgrondSvg} src={Blob2} alt="blob2" />
       </div>
       <Paper className={classes.paper}>
-        <form
-          className={classes.form}
-          onSubmit={e => {
-            e.preventDefault()
-            close()
+        <Button
+          className={classes.registerButton}
+          onClick={() => {
+            setOnLogin(!onLogin)
+            setOnRegister(!onRegister)
           }}
         >
-          <Grid
-            container
-            className={classes.container}
-            spacing={3}
-            style={{ height: '100%' }}
-            alignContent="center"
-            alignItems="center"
-          >
-            <Grid item xs={12} className={classes.item}>
-              <h2>Login</h2>
-            </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              justify="center"
-              className={classes.item}
-            >
-              <Grid item xs={12} md={6}>
-                <TextField
-                  required
-                  fullWidth
-                  autoFocus
-                  margin="normal"
-                  variant="filled"
-                  type="text"
-                  label="Nickname"
-                  id="nickname"
-                  name="nickname"
-                  autoComplete="nickname"
-                />
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              justify="center"
-              className={classes.item}
-            >
-              <Grid item xs={12} md={6}>
-                <TextField
-                  required
-                  fullWidth
-                  margin="normal"
-                  variant="filled"
-                  type="password"
-                  id="password"
-                  name="password"
-                  label="Password"
-                  autoComplete="password"
-                />
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              justify="center"
-              className={classes.item}
-            >
-              <Grid item xs={12} md={6}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  fullWidth
-                >
-                  Login
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </form>
+          REGISTER
+        </Button>
+
+        <FormLogin
+          open={onLogin}
+        />
+
+        {/* <FormLogin
+          open={onRegister}
+        /> */}
       </Paper>
     </Dialog>
   )
