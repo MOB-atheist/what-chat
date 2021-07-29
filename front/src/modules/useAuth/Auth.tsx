@@ -5,11 +5,12 @@ import Dialog from '@material-ui/core/Dialog'
 import { TransitionProps } from '@material-ui/core/transitions'
 
 import { AuthContext } from './authContext'
-import { Paper, Zoom, Slide, Button } from '@material-ui/core'
+import { Paper, Zoom, Slide, Button, Grid } from '@material-ui/core'
 
 import Blob from './blob.svg'
 import Blob2 from './blob2.svg'
 import Blob3 from './blob3.svg'
+import Logo from '../../logo.png'
 import FormLogin from './FormLogin'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -17,12 +18,19 @@ const useStyles = makeStyles((theme: Theme) =>
     dialog: {
       height: '100%',
       width: '100%',
-      position: 'relative'
+      position: 'relative',
+      backgroundColor: theme.palette.background.paper
     },
     paper: {
       width: '100%',
       height: '100%',
-      padding: theme.spacing(2)
+      padding: theme.spacing(2),
+      background: `
+        url(${Blob3}),
+        url(${Blob}),
+        url(${Blob2});`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center'
     },
     form: {
       height: '100%',
@@ -38,20 +46,15 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '50%'
     },
     background: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      opacity: 0.5,
-      backgroundColor: '#000'
+      position: 'relative',
+      width: '100%'
     },
     backgrondSvg: {
       position: 'absolute',
-      top: 0,
+      top: '-100%',
       left: 0,
-      width: '100%',
-      height: '100%'
+      width: '100%'
+      // height: '100%'
     },
     registerButton: {
       position: 'absolute',
@@ -88,31 +91,36 @@ const _ = () => {
       open={true}
       onClose={close}
       TransitionComponent={Transition}
+      PaperProps={{
+        className: classes.paper
+      }}
     >
-      <div className={classes.background}>
-        <img className={classes.backgrondSvg} src={Blob3} alt="blob3" />
-        <img className={classes.backgrondSvg} src={Blob} alt="blob" />
-        <img className={classes.backgrondSvg} src={Blob2} alt="blob2" />
-      </div>
-      <Paper className={classes.paper}>
-        <Button
-          className={classes.registerButton}
-          onClick={() => {
-            setOnLogin(!onLogin)
-            setOnRegister(!onRegister)
-          }}
-        >
-          REGISTER
-        </Button>
+      <Button
+        className={classes.registerButton}
+        onClick={() => {
+          setOnLogin(!onLogin)
+          setOnRegister(!onRegister)
+        }}
+      >
+        REGISTER
+      </Button>
 
-        <FormLogin
-          open={onLogin}
-        />
+      <Grid
+        container
+        className={classes.container}
+        spacing={3}
+        style={{ height: '100%' }}
+        alignContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={12} className={classes.item}>
+          <img src={Logo} alt="Logo" />
+        </Grid>
 
-        {/* <FormLogin
-          open={onRegister}
-        /> */}
-      </Paper>
+        <Grid item xs={12} className={classes.item}>
+          <FormLogin open={onLogin} />
+        </Grid>
+      </Grid>
     </Dialog>
   )
 }

@@ -22,31 +22,54 @@ const theme = createTheme({
   },
   overrides: {
     MuiOutlinedInput: {
+      root: {
+        '&:hover': {
+          backgroundColor: 'rgb(0 0 0 / 35%)'
+        },
+        '&:focus-within': {
+          backgroundColor: 'rgb(0 0 0 / 35%)'
+        },
+        backgroundColor: 'rgb(0 0 0 / 50%)'
+      },
       input: {
         '&:-webkit-autofill': {
           color: '#fff !important',
           appearance: 'none',
+          borderTopColor: '#101010',
+          borderBottomColor: '#101010',
+          borderLeftColor: '#101010',
+          borderRightColor: '#101010',
           caretColor: '#6F09B2',
+          boxShadow: '0 0 0 1000px #101010 inset !important',
           WebkitTextFillColor: '#fff !important',
-          backgroundColor: '#DD0BE3 !important',
-          WebkitBoxShadow: "0 0 0 1000px #424242 inset",
+          backgroundColor: '#101010 !important',
+          WebkitBoxShadow: "0 0 0 1000px #101010 inset",
         },
       },
     },
     MuiFilledInput: {
+      root: {
+        '&:hover': {
+          backgroundColor: 'rgb(0 0 0 / 35%)'
+        },
+        '&:focus-within': {
+          backgroundColor: 'rgb(0 0 0 / 35%)'
+        },
+        backgroundColor: 'rgb(0 0 0 / 50%)'
+      },
       input: {
         '&:-webkit-autofill': {
           color: '#fff !important',
           appearance: 'none',
-          borderTopColor: '#535353',
-          borderBottomColor: '#535353',
-          borderLeftColor: '#535353',
-          borderRightColor: '#535353',
+          borderTopColor: '#101010',
+          borderBottomColor: '#101010',
+          borderLeftColor: '#101010',
+          borderRightColor: '#101010',
           caretColor: '#6F09B2',
-          boxShadow: '0 0 0 1000px #535353 inset !important',
+          boxShadow: '0 0 0 1000px #101010 inset !important',
           WebkitTextFillColor: '#fff !important',
-          backgroundColor: '#535353 !important',
-          WebkitBoxShadow: "0 0 0 1000px #535353 inset",
+          backgroundColor: '#101010 !important',
+          WebkitBoxShadow: "0 0 0 1000px #101010 inset",
         },
       },
     },
