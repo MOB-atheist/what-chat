@@ -4,19 +4,6 @@ on:
   push:
     branches: [ master ]
 jobs:
-  folders:
-    name: Server folder creation
-    runs-on: ubuntu-latest
-    steps:
-      - name: Creating server folders 🗂
-        uses: appleboy/ssh-action@master
-        with:
-          sync: true
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            mkdir -p ${{ secrets.SSH_DIR }}/dist 
   build:
     name: Building, testing and deploying
     runs-on: ubuntu-latest
@@ -65,42 +52,3 @@ jobs:
           message: ${{ env.COVERAGE }}
           color: green
           namedLogo: jest
-
-      - name: Server build Upload 👾
-        uses: nogsantos/scp-deploy@master
-        with:
-          src: ./server/dist/*
-          host: ${{ secrets.SSH_HOST }}
-          remote: ${{ secrets.SSH_DIR }}/dist
-          port: ${{ secrets.SSH_PORT }}
-          user: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-      
-      - name: root files Upload 🧰
-        uses: nogsantos/scp-deploy@master
-        with:
-          src:
-            ./server/package.json
-            ./server/ecosystem.config.js
-          host: ${{ secrets.SSH_HOST }}
-          remote: ${{ secrets.SSH_DIR }}
-          port: ${{ secrets.SSH_PORT }}
-          user: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-  deploy:
-    name: Server deployment
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Server deploy scripts 🌐
-        uses: appleboy/ssh-action@master
-        with:
-          sync: true
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd ${{ secrets.SSH_DIR }}
-            npm install --production
-            npm stop
-            npm start
